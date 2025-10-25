@@ -1,0 +1,127 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* common css start */
+/* For Chrome, Safari, Edge, Opera */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* For Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+::-webkit-scrollbar {
+  @apply w-[7px];
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  @apply bg-white;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  @apply bg-blue-900;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  @apply cursor-pointer bg-blue-800;
+}
+
+/* common css end */
+
+/* customize sidebar start*/
+/* width */
+.sidebar-scrollbar-customize::-webkit-scrollbar {
+  @apply w-0;
+}
+
+.sidebar-scrollbar-customize:hover::-webkit-scrollbar {
+  @apply w-[7px];
+}
+
+/* Track */
+.sidebar-scrollbar-customize::-webkit-scrollbar-track {
+  @apply bg-white;
+}
+
+/* Handle */
+.sidebar-scrollbar-customize::-webkit-scrollbar-thumb {
+  @apply bg-primary;
+}
+
+/* Handle on hover */
+.sidebar-scrollbar-customize::-webkit-scrollbar-thumb:hover {
+  @apply cursor-pointer bg-secondary;
+}
+
+/* customize sidebar end */
+
+.active {
+  @apply border-l-4 border-blue-700 bg-primary text-white;
+}
+
+.active span:first-child {
+  @apply text-blue-700;
+}
+
+.active-menu {
+  @apply bg-teal-600 text-white;
+}
+
+.pagination-active {
+  @apply bg-primary text-white;
+}
+
+/* customize table scrollbar start */
+/* For WebKit browsers like Chrome, Edge, and Safari */
+.table-container::-webkit-scrollbar {
+  @apply h-1 w-1;
+}
+
+.table-container::-webkit-scrollbar-track {
+  @apply rounded-b-md bg-white;
+}
+
+.table-container::-webkit-scrollbar-thumb {
+  @apply bg-primary;
+}
+
+.table-container::-webkit-scrollbar-thumb:hover {
+  @apply cursor-pointer bg-secondary;
+}
+
+.table-container::-webkit-scrollbar-thumb:hover {
+  @apply cursor-pointer bg-secondary;
+}
+/* customize table scrollbar end */
+
+/* customize sidebar start*/
+/* width */
+
+.sales-container-scroll::-webkit-scrollbar {
+  @apply w-[5px];
+}
+
+/* Track */
+.sales-container-scroll::-webkit-scrollbar-track {
+  @apply bg-white;
+}
+
+/* Handle */
+.sales-container-scroll::-webkit-scrollbar-thumb {
+  @apply rounded-lg bg-primary;
+}
+
+/* Handle on hover */
+.sales-container-scroll::-webkit-scrollbar-thumb:hover {
+  @apply cursor-pointer bg-secondary;
+}
+
+/* customize sidebar end */

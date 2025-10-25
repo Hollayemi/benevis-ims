@@ -1,0 +1,69 @@
+appId: com.bis.aluminum.management
+productName: BIS Aluminum Management
+copyright: Copyright © 2025
+
+directories:
+  output: dist
+  buildResources: public
+
+files:
+  - electron/**/*
+  - .next/standalone/**/*
+  - public/**/*
+  - package.json
+  - "!node_modules/**/*"
+  - "!**/*.ts"
+  - "!**/*.map"
+
+# Exclude problematic optional dependencies
+asarUnpack:
+  - "**/*.node"
+  - ".next/**/*"
+
+# Explicitly exclude sharp platform-specific packages
+files:
+  - "!node_modules/**/sharp-darwin-*/**/*"
+  - "!node_modules/**/@img/sharp-darwin-*/**/*"
+  - "!node_modules/**/sharp-linux-*/**/*"
+  - "!node_modules/**/@img/sharp-linux-*/**/*"
+  - "!node_modules/**/sharp-win32-ia32/**/*"
+  - "!node_modules/**/@img/sharp-win32-ia32/**/*"
+
+extraResources:
+  - from: .next/standalone
+    to: .next/standalone
+    filter:
+      - "**/*"
+  - from: public
+    to: public
+    filter:
+      - "**/*"
+
+win:
+  target:
+    - target: nsis
+      arch:
+        - x64
+  icon: public/icon.ico
+  artifactName: ${productName}-${version}-Setup.${ext}
+
+mac:
+  target:
+    - dmg
+  icon: public/icon.icns
+  category: public.app-category.business
+
+linux:
+  target:
+    - AppImage
+    - deb
+  icon: public/icon.png
+  category: Office
+
+nsis:
+  oneClick: false
+  allowToChangeInstallationDirectory: true
+  allowElevation: true
+  createDesktopShortcut: true
+  createStartMenuShortcut: true
+  shortcutName: BIS Aluminum Management
