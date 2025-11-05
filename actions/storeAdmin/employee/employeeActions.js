@@ -1,12 +1,13 @@
 
 
 import { Fetch } from "@/utils/Fetch";
+import { API_BASE_URL } from "@/lib/config";
 
 //get employee with paginations
 export const getEmployees = async (limit, page) => {
   try {
     const res = await Fetch(
-      `${process.env.NEXT_PUBLIC_BASE_URL}/admin/employee/employee-list?page=${page}&limit=${limit}`,
+      `${API_BASE_URL}/admin/employee/employee-list?page=${page}&limit=${limit}`,
       { cache: "no-store" },
     );
     const data = await res.json();
@@ -20,7 +21,7 @@ export const getEmployees = async (limit, page) => {
 export const getAllEmployee = async () => {
   try {
     const res = await Fetch(
-      `${process.env.NEXT_PUBLIC_BASE_URL}/admin/employee/all`,
+      `${API_BASE_URL}/admin/employee/all`,
       { cache: "no-store" },
     );
     const data = await res.json();
@@ -34,7 +35,7 @@ export const getAllEmployee = async () => {
 export const getAEmployee = async (employeeId) => {
   try {
     const res = await Fetch(
-      `${process.env.NEXT_PUBLIC_BASE_URL}/admin/employee/${employeeId}`,
+      `${API_BASE_URL}/admin/employee/${employeeId}`,
       { cache: "no-store" },
     );
     const data = await res.json();
@@ -48,7 +49,7 @@ export const getAEmployee = async (employeeId) => {
 export const DeleteEmployeeSalary = async (employeeId, salaryId) => {
   try {
     const res = await Fetch(
-      `${process.env.NEXT_PUBLIC_BASE_URL}/admin/employee/delete-salary`,
+      `${API_BASE_URL}/admin/employee/delete-salary`,
       {
         method: "DELETE",
         headers: {
@@ -68,7 +69,7 @@ export const DeleteEmployeeSalary = async (employeeId, salaryId) => {
 export const DeleteEmployee = async (employeeId) => {
   try {
     const res = await Fetch(
-      `${process.env.NEXT_PUBLIC_BASE_URL}/admin/employee/delete-employee/${employeeId}`,
+      `${API_BASE_URL}/admin/employee/delete-employee/${employeeId}`,
       { cache: "no-store", method: "DELETE" },
     );
     const data = await res.json();

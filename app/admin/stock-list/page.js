@@ -5,8 +5,9 @@ import ActionButtons from "@/components/admin/Stock/ActionButtons";
 import Container from "@/components/common/Container/Container";
 import PageHeader from "@/components/common/PageHeader/PageHeader";
 import Pagination from "@/components/common/Pagination/Pagination";
+import { useAsync } from "@/hook/useAsync";
 import Image from "next/image";
-import React from "react";
+import React, { use } from "react";
 
 const StockList = ({ searchParams }) => {
   const { page, limit } = use(searchParams);

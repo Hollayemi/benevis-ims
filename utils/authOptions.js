@@ -3,11 +3,12 @@ import CredentialsProvider from "next-auth/providers/credentials";
 import NextAuth from "next-auth";
 import { signOut } from "next-auth/react";
 import { redirect } from "next/navigation";
+import { API_BASE_URL } from "@/lib/config";
 
 
 // export async function refreshTokenHandler(token) {
 //   try {
-//     const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/refresh/me`, {
+//     const res = await fetch(`${API_BASE_URL}/refresh/me`, {
 //       method: "POST",
 //       headers: {
 //         Authorization: `Refresh ${token.refreshToken}`,
@@ -56,7 +57,7 @@ export const authOptions = {
           console.log("🔐 SuperAdmin login attempt:", credentials);
 
           const res = await fetch(
-            `${process.env.NEXT_PUBLIC_BASE_URL}/superadmin/users/login`,
+            `${API_BASE_URL}/superadmin/users/login`,
             {
               method: "POST",
               headers: { "Content-Type": "application/json" },
@@ -97,7 +98,7 @@ export const authOptions = {
           console.log("🔐 StoreAdmin login attempt:", credentials);
 
           const res = await fetch(
-            `${process.env.NEXT_PUBLIC_BASE_URL}/superadmin/staffs/login`,
+            `${API_BASE_URL}/superadmin/staffs/login`,
             {
               method: "POST",
               headers: { "Content-Type": "application/json" },

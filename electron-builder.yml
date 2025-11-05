@@ -9,33 +9,26 @@ directories:
 files:
   - electron/**/*
   - .next/standalone/**/*
+  - .next/static/**/*
   - public/**/*
   - package.json
   - "!node_modules/**/*"
   - "!**/*.ts"
   - "!**/*.map"
-
-# Exclude problematic optional dependencies
-asarUnpack:
-  - "**/*.node"
-  - ".next/**/*"
-
-# Explicitly exclude sharp platform-specific packages
-files:
-  - "!node_modules/**/sharp-darwin-*/**/*"
-  - "!node_modules/**/@img/sharp-darwin-*/**/*"
-  - "!node_modules/**/sharp-linux-*/**/*"
-  - "!node_modules/**/@img/sharp-linux-*/**/*"
-  - "!node_modules/**/sharp-win32-ia32/**/*"
-  - "!node_modules/**/@img/sharp-win32-ia32/**/*"
+  - "!src/**/*"
+  - "!scripts/**/*"
 
 extraResources:
   - from: .next/standalone
-    to: .next/standalone
+    to: app/.next/standalone
+    filter:
+      - "**/*"
+  - from: .next/static
+    to: app/.next/static
     filter:
       - "**/*"
   - from: public
-    to: public
+    to: app/public
     filter:
       - "**/*"
 
@@ -45,7 +38,19 @@ win:
       arch:
         - x64
   icon: public/icon.ico
-  artifactName: ${productName}-${version}-Setup.${ext}
+  artifactName: ${productName}-Setup-${version}.${ext}
+
+nsis:
+  oneClick: false
+  allowToChangeInstallationDirectory: true
+  allowElevation: true
+  createDesktopShortcut: true
+  createStartMenuShortcut: true
+  shortcutName: ${productName}
+  perMachine: false
+  installerIcon: public/icon.ico
+  uninstallerIcon: public/icon.ico
+  license: LICENSE.txt
 
 mac:
   target:
@@ -59,11 +64,3 @@ linux:
     - deb
   icon: public/icon.png
   category: Office
-
-nsis:
-  oneClick: false
-  allowToChangeInstallationDirectory: true
-  allowElevation: true
-  createDesktopShortcut: true
-  createStartMenuShortcut: true
-  shortcutName: BIS Aluminum Management

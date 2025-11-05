@@ -12,7 +12,7 @@ import { useAsync } from "@/hook/useAsync";
 export const dynamic = "force-dynamic";
 
 
-const AddSales = async () => {
+const AddSales = () => {
   //get all customer
   const { data: customers } = useAsync(getAllCustomer);
 

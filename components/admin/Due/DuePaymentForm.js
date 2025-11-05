@@ -7,6 +7,7 @@ import FormInput from "@/components/common/FormInput/FormInput";
 import RadioButton from "@/components/common/FormInput/RadioButton";
 import SelectInput from "@/components/common/SelectInput/SelectInput";
 import { useAuth } from "@/contexts/authContext";
+import { API_BASE_URL } from "@/lib/config";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { toast } from "react-toastify";
@@ -30,7 +31,7 @@ const DuePaymentForm = ({ dueSale, banks }) => {
     setErrors({});
     try {
       const res = await fetch(
-        `${process.env.NEXT_PUBLIC_BASE_URL}/admin/sale/due-sales-payment`,
+        `${API_BASE_URL}/admin/sale/due-sales-payment`,
         {
           method: "POST",
           headers: {

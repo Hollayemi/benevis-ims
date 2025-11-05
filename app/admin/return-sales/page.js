@@ -6,27 +6,27 @@ import SearchContainer from "@/components/admin/ReturnSales/SearchContainer";
 import Container from "@/components/common/Container/Container";
 import PageHeader from "@/components/common/PageHeader/PageHeader";
 import Pagination from "@/components/common/Pagination/Pagination";
+import { useAsync } from "@/hook/useAsync";
+import { use } from "react";
 
 export const dynamic = "force-dynamic";
 
 const ReturnSales = ({ searchParams }) => {
   const { page, limit } = use(searchParams);
-  //get all return sales
   const returnSale = useAsync(returnSales, [limit, page], [limit, page]).data;
 
   return (
     <Container>
-      {/* add page header */}
       <PageHeader headText="Return Sale" />
       <div className="space-y-10 rounded-md bg-white/50 px-2 py-5 shadow-md backdrop-blur">
-        {/* search products and return sale search list */}
         <SearchContainer />
 
-        {/* return sales list table*/}
         <div className="space-y-3">
           <p className="text-sm font-medium capitalize">return sale list</p>
+
           <div className="space-y-5">
             <div className="table-container relative overflow-x-auto rounded-md shadow-sm shadow-primary">
+
               <table className="w-full text-left text-sm text-text/80 rtl:text-right">
                 <thead className="bg-primary/25 text-center text-xs uppercase text-text">
                   <tr>
@@ -56,24 +56,26 @@ const ReturnSales = ({ searchParams }) => {
                     </th>
                   </tr>
                 </thead>
+
                 <tbody>
-                  {/* showing all return sales products */}
                   {returnSale?.data &&
                     returnSale?.data?.map((item) => (
                       <ReturnSaleItem key={item._id} sale={item} />
                     ))}
                 </tbody>
               </table>
+        
               {returnSale?.data?.length === 0 && (
                 <p className="py-3 text-center font-semibold text-primary">
                   No Return Sales Found!
                 </p>
               )}
             </div>
-            {/* pagination  */}
+
             <div className="flex w-full justify-end pr-3">
               <Pagination data={returnSale} />
             </div>
+
           </div>
         </div>
       </div>

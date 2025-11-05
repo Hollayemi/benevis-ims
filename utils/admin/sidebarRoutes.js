@@ -19,7 +19,7 @@ const sidebarRoutes = (permission) => [
   {
     name: "Sales",
     path: "/admin/sales",
-    visible: permission === "sales_personnel" || permission === "accountant",
+    visible: permission === "superadmin" || permission === "sales_personnel" || permission === "accountant",
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -54,7 +54,7 @@ const sidebarRoutes = (permission) => [
   {
     name: "Category",
     path: "/admin/category",
-    visible: permission === "stock_manager",
+    visible: permission === "superadmin" || permission === "stock_manager",
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -79,7 +79,7 @@ const sidebarRoutes = (permission) => [
   {
     name: "Purchase",
     path: "/admin/purchase",
-    visible: permission === "accountant",
+    visible: permission === "superadmin" || permission === "accountant",
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -107,7 +107,7 @@ const sidebarRoutes = (permission) => [
   },
   {
     name: "Stock",
-    visible: permission === "stock_manager",
+    visible: permission === "superadmin" || permission === "stock_manager",
     path: "/admin/stock",
     icon: (
       <svg
@@ -138,7 +138,7 @@ const sidebarRoutes = (permission) => [
   {
     name: "Invoices",
     path: "/admin/invoice",
-    visible: permission === "accountant",
+    visible: permission === "superadmin" || permission === "accountant",
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -167,7 +167,7 @@ const sidebarRoutes = (permission) => [
   {
     name: "Report",
     path: "/admin/report",
-    visible: permission === "accountant",
+    visible: permission === "superadmin" || permission === "accountant",
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -191,7 +191,7 @@ const sidebarRoutes = (permission) => [
   },
   {
     name: "Customer",
-    visible: permission === "sales_personnel" || permission === "accountant",
+    visible: permission === "superadmin" || permission === "sales_personnel" || permission === "accountant",
     path: "/admin/customer",
     icon: (
       <svg
@@ -221,7 +221,7 @@ const sidebarRoutes = (permission) => [
   },
   {
     name: "Suppliers",
-    visible: permission === "stock_manager",
+    visible: permission === "superadmin" || permission === "stock_manager",
     path: "/admin/suppliers",
     icon: (
       <svg
@@ -279,7 +279,7 @@ const sidebarRoutes = (permission) => [
   {
     name: "Employee",
     path: "/admin/Employee",
-    visible: permission === "accountant",
+    visible: permission === "superadmin" || permission === "accountant",
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -304,7 +304,7 @@ const sidebarRoutes = (permission) => [
   {
     name: "Settings",
     path: "/admin/Settings",
-    visible: true,
+    visible: true === "superadmin" || true,
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"

@@ -3,6 +3,7 @@
 import Button from "@/components/common/Button/Button";
 import FormInput from "@/components/common/FormInput/FormInput";
 import { useAuth } from "@/contexts/authContext";
+import { API_BASE_URL } from "@/lib/config";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -50,7 +51,7 @@ const ProfileUpdateForm = () => {
 
     try {
       const res = await fetch(
-        `${process.env.NEXT_PUBLIC_BASE_URL}/admin/security/profile`,
+        `${API_BASE_URL}/admin/security/profile`,
         {
           method: "PATCH",
           body: JSON.stringify({

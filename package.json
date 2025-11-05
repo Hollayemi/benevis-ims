@@ -3,23 +3,49 @@
   "version": "1.0.0",
   "description": "BIS Aluminum Longspan Management System",
   "main": "electron/main.js",
-  "author": "Your Name",
+  "author": "Corisio",
   "license": "MIT",
   "scripts": {
     "dev": "next dev --turbopack -p 4003",
-    "build": "next build && node scripts/post-build.js --omit=optional",
-    "start": "next start",
+    "build": "next build",
+    "start": "node server.js",
     "lint": "next lint",
-    "electron:dev": "concurrently \"npm run dev\" \"wait-on http://localhost:3000 && electron .\"",
-    "electron:build": "npm run build && electron-builder",
-    "electron:build:win": "npm run build && electron-builder --win --x64",
-    "electron:build:mac": "npm run build && electron-builder --mac",
-    "electron:build:linux": "npm run build && electron-builder --linux"
+    "postbuild": "node scripts/post-build-electron.js",
+    "electron:dev": "concurrently \"npm run dev\" \"wait-on http://localhost:4003 && electron .\"",
+    "electron:build": "npm run build && electron-builder --win --x64",
+    "electron:build:all": "npm run build && electron-builder -mwl",
+    "clean": "rimraf .next dist build-manifest.json"
+  },
+  "dependencies": {
+    "date-fns": "^4.1.0",
+    "lucide-react": "^0.543.0",
+    "next": "15.2.3",
+    "next-auth": "^5.0.0-beta.25",
+    "next-pwa": "^5.6.0",
+    "react": "19.0.0",
+    "react-datepicker": "^7.3.0",
+    "react-dom": "19.0.0",
+    "react-toastify": "^10.0.6",
+    "recharts": "^2.12.7"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.20",
+    "concurrently": "^8.2.2",
+    "electron": "^28.3.3",
+    "electron-builder": "^24.13.3",
+    "fs-extra": "^11.2.0",
+    "postcss": "^8",
+    "eslint": "^8",
+    "eslint-config-next": "15.1.4",
+    "rimraf": "^5.0.5",
+    "prettier": "^3.3.3",
+    "prettier-plugin-tailwindcss": "^0.6.6",
+    "tailwindcss": "^3.4.1",
+    "wait-on": "^7.2.0"
   },
   "build": {
     "appId": "com.bis.aluminum.management",
     "productName": "BIS Aluminum Management",
-    "asar": true,
     "directories": {
       "output": "dist",
       "buildResources": "public"
@@ -27,61 +53,49 @@
     "files": [
       "electron/**/*",
       ".next/standalone/**/*",
+      ".next/static/**/*",
       "public/**/*",
       "package.json"
     ],
     "extraResources": [
       {
         "from": ".next/standalone",
-        "to": ".next/standalone",
-        "filter": ["**/*"]
+        "to": "app/.next/standalone",
+        "filter": [
+          "**/*"
+        ]
+      },
+      {
+        "from": ".next/static",
+        "to": "app/.next/static",
+        "filter": [
+          "**/*"
+        ]
       },
       {
         "from": "public",
-        "to": "public",
-        "filter": ["**/*"]
+        "to": "app/public",
+        "filter": [
+          "**/*"
+        ]
       }
-    ],
-    "asarUnpack": [
-      "node_modules/sharp/**/*"
-      
     ],
     "win": {
       "target": [
         {
           "target": "nsis",
-          "arch": ["x64"]
+          "arch": [
+            "x64"
+          ]
         }
       ],
-      "icon": "public/icon.ico",
-      "artifactName": "${productName}-${version}-Setup.${ext}"
-    },
-    "mac": {
-      "target": ["dmg"],
-      "icon": "public/icon.icns",
-      "category": "public.app-category.business"
-    },
-    "linux": {
-      "target": ["AppImage", "deb"],
-      "icon": "public/icon.png",
-      "category": "Office"
+      "icon": "public/icon.ico"
     },
     "nsis": {
       "oneClick": false,
       "allowToChangeInstallationDirectory": true,
-      "allowElevation": true,
       "createDesktopShortcut": true,
-      "createStartMenuShortcut": true,
-      "shortcutName": "BIS Aluminum Management"
-    },
-    "fileAssociations": [],
-    "protocols": []
-  },
-  "devDependencies": {
-    "electron": "^28.0.0",
-    "electron-builder": "^24.9.1",
-    "concurrently": "^8.2.2",
-    "wait-on": "^7.2.0",
-    "fs-extra": "^11.2.0"
+      "createStartMenuShortcut": true
+    }
   }
 }

@@ -1,12 +1,13 @@
 
 
 import { Fetch } from "@/utils/Fetch";
+import { API_BASE_URL } from "@/lib/config";
 
 //get all return sales
 export const returnSales = async (limit, page) => {
   try {
     const res = await Fetch(
-      `${process.env.NEXT_PUBLIC_BASE_URL}/admin/return-sale/all?page=${page}&limit=${limit}`,
+      `${API_BASE_URL}/admin/return-sale/all?page=${page}&limit=${limit}`,
       {
         cache: "no-store",
       },
@@ -22,7 +23,7 @@ export const returnSales = async (limit, page) => {
 export const createReturnSale = async (formData) => {
   try {
     const res = await Fetch(
-      `${process.env.NEXT_PUBLIC_BASE_URL}/admin/return-sale`,
+      `${API_BASE_URL}/admin/return-sale`,
       {
         cache: "no-store",
         headers: {
@@ -43,7 +44,7 @@ export const createReturnSale = async (formData) => {
 export const DeleteReturnSale = async (salesId) => {
   try {
     const res = await Fetch(
-      `${process.env.NEXT_PUBLIC_BASE_URL}/admin/return-sale/${salesId}`,
+      `${API_BASE_URL}/admin/return-sale/${salesId}`,
       { cache: "no-store", method: "DELETE" },
     );
     const data = await res.json();

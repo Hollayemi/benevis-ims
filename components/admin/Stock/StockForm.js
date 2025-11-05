@@ -7,6 +7,7 @@ import FormInput from "@/components/common/FormInput/FormInput";
 import TextArea from "@/components/common/FormInput/TextArea";
 import SelectInput from "@/components/common/SelectInput/SelectInput";
 import { useAuth } from "@/contexts/authContext";
+import { API_BASE_URL } from "@/lib/config";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { toast } from "react-toastify";
@@ -15,7 +16,7 @@ const StockForm = ({ categories, suppliers }) => {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [uom, setUom] = useState("");
-  const [purchasePrice, setPurchasePrice] = useState("");
+  const [purchasePrice, setPurchasePrice] = useState(0);
   const [sellingPrice, setSellingPrice] = useState("");
   const [quantity, setQuantity] = useState("");
   const [sku, setSku] = useState("");
@@ -41,7 +42,7 @@ const StockForm = ({ categories, suppliers }) => {
 
     try {
       const res = await fetch(
-        `${process.env.NEXT_PUBLIC_BASE_URL}/admin/stock/create`,
+        `${API_BASE_URL}/admin/stock/create`,
         {
           method: "POST",
           body: JSON.stringify({
@@ -202,7 +203,7 @@ const StockForm = ({ categories, suppliers }) => {
 
             <div className="space-y-2">
               <FormInput
-                label="Purchase Price"
+                label="Purchase Price (optional)"
                 type="number"
                 placeholder="Enter product Purchase Price"
                 value={purchasePrice}
@@ -262,7 +263,7 @@ const StockForm = ({ categories, suppliers }) => {
                 </p>
               </div>
 
-              <div className="space-y-2">
+              {/* <div className="space-y-2">
                 <FormInput
                   label="Product Image"
                   type="file"
@@ -274,8 +275,8 @@ const StockForm = ({ categories, suppliers }) => {
                 <p className="text-sm font-semibold text-red-500">
                   {errors?.errors?.image?.msg}
                 </p>
-              </div>
-              {/* Category */}
+              </div>*/}
+               {/* Category  */}
               <div className="space-y-2">
                 <SelectInput
                   label="Category"
@@ -284,7 +285,7 @@ const StockForm = ({ categories, suppliers }) => {
                 >
                   <option value="">Select Category</option>
                   {myCategories.map((cat) => (
-                    <option key={cat.name} value={cat.name}>
+                    <option key={cat.name} value={cat._id}>
                       {cat.name}
                     </option>
                   ))}

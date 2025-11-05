@@ -64,7 +64,7 @@ const ReportFilter = ({ setSearch, dropdown, status, acceptQuery, dropdownName }
     // }, [startDate, endDate, filter, customer, router, searchParams]);
 
     return (
-        <div className="flex items-center justify-end gap-2">
+        <div onKeyPress={handleKeyPress} className="flex items-center justify-end gap-2">
 
             {acceptQuery &&  <div className="flex w-full max-w-[300px] items-center gap-2 rounded-md px-1.5 text-sm ring-1 ring-primary focus-within:ring-2">
                 <span>
@@ -185,6 +185,7 @@ const ReportFilter = ({ setSearch, dropdown, status, acceptQuery, dropdownName }
                     )}
                 </select>
             </button>}
+            <button onClick={() => handleSubmit()}>Search</button>
         </div>
     );
 };

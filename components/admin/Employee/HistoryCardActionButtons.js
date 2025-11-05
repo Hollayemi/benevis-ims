@@ -14,7 +14,7 @@ const HistoryCardActionButtons = ({ salary, employeeId }) => {
   const handleDelete = async (employeeId, salaryId) => {
     setLoading(true);
     try {
-      const isSure = confirm("Are you sure you wanna delete this?");
+      const isSure = confirm("Are you sure you want to delete this??");
       if (isSure) {
         const result = await DeleteEmployeeSalary(employeeId, salaryId);
         if (result?.data?._id) {

@@ -1,6 +1,8 @@
 // utils/apiInterceptor.js
 "use client";
 
+import { API_BASE_URL } from "@/lib/config";
+
 class APIInterceptor {
     constructor() {
         this.requestQueue = [];
@@ -15,10 +17,10 @@ class APIInterceptor {
     getBackendUrl() {
         if (typeof window !== 'undefined') {
             return localStorage.getItem('backendUrl') + "/api" ||
-                process.env.NEXT_PUBLIC_BASE_URL ||
+                API_BASE_URL ||
                 'http://192.168.1.100:5000/api';
         }
-        return process.env.NEXT_PUBLIC_BASE_URL || 'http://192.168.1.100:5000/api';
+        return API_BASE_URL || 'http://192.168.1.100:5000/api';
     }
 
     getAccessToken() {

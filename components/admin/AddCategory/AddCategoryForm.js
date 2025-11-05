@@ -4,6 +4,7 @@ import Button from "@/components/common/Button/Button";
 import FormInput from "@/components/common/FormInput/FormInput";
 import TextArea from "@/components/common/FormInput/TextArea";
 import { useAuth } from "@/contexts/authContext";
+import { API_BASE_URL } from "@/lib/config";
 import { useState } from "react";
 import { toast } from "react-toastify";
 
@@ -42,7 +43,7 @@ const AddCategoryForm = () => {
 
     try {
       const res = await fetch(
-        `${process.env.NEXT_PUBLIC_BASE_URL}/admin/category/add-category`,
+        `${API_BASE_URL}/admin/category/add-category`,
         {
           method: "POST",
           body: JSON.stringify({
@@ -70,6 +71,7 @@ const AddCategoryForm = () => {
         setErrors(data);
       }
     } catch (err) {
+      console.log({err})
       setLoading(false);
       setErrors({
         errors: {
@@ -82,8 +84,8 @@ const AddCategoryForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="overflow-auto">
-      <div className="space-y-4">
+    <form onSubmit={handleSubmit} className="relative">
+      <div className="space-y-2 p-4">
         {/* Category Name */}
         <div className="space-y-2">
           <FormInput
@@ -102,7 +104,7 @@ const AddCategoryForm = () => {
         {/* Description */}
         <div className="space-y-2">
           <TextArea
-            label={"Category Description"}
+            label={"Category Description (optional)"}
             type="text"
             value={description}
             name="description"

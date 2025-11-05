@@ -3,6 +3,7 @@
 "use client";
 
 import { useAuth } from "@/contexts/authContext";
+import { API_BASE_URL } from "@/lib/config";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -16,12 +17,12 @@ const StoreActionButtons = ({ id }) => {
   //delete a bank
   const handleDelete = async (ID) => {
     setLoading(true);
-    const agree = confirm("Are you sure you wanna delete this?");
+    const agree = confirm("Are you sure you want to delete this??");
     try {
       if (agree) {
         //call the api to delete this bank
         const res = await fetch(
-          `${process.env.NEXT_PUBLIC_BASE_URL}/admin/bank/delete-bank/${ID}`,
+          `${API_BASE_URL}/admin/bank/delete-bank/${ID}`,
           {
             method: "DELETE",
             headers: {

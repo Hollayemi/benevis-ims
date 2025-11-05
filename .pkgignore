@@ -1,0 +1,49 @@
+# .pkgignore - Files to exclude from Pkg bundle
+
+# Development files
+.git/
+.gitignore
+.env.local
+.env.development
+.eslintrc.json
+
+# Documentation
+README.md
+CHANGELOG.md
+*.md
+
+# Test files
+**/*.test.js
+**/*.spec.js
+__tests__/
+tests/
+
+# Build artifacts (except .next)
+dist/
+build/
+coverage/
+
+# Node modules (Pkg will include only what's needed)
+node_modules/.cache/
+
+# Electron files (not needed for Pkg)
+electron/
+electron-builder.yml
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+logs/
+
+# Temporary files
+tmp/
+temp/

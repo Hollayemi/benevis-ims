@@ -10,6 +10,7 @@ import { useAuth } from "@/contexts/authContext";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
+import { API_BASE_URL } from "@/lib/config";
 
 const PaymentContainer = ({ customerData, banks }) => {
   const { carts, setCarts, setQuery, setProducts } = useAddToCart();
@@ -87,7 +88,7 @@ const PaymentContainer = ({ customerData, banks }) => {
     // }
 
     // set payment method
-    var paymentMethod = "cash";
+    var paymentMethod = "bank";
     if (cash <= 0 && bank > 0) {
       paymentMethod = "bank";
     } else if (cash > 0 && bank <= 0) {
@@ -98,7 +99,7 @@ const PaymentContainer = ({ customerData, banks }) => {
 
     try {
       const res = await fetch(
-        `${process.env.NEXT_PUBLIC_BASE_URL}/admin/sale/sales-pament`,
+        `${API_BASE_URL}/admin/sale/sales-pament`,
         {
           method: "POST",
           body: JSON.stringify({

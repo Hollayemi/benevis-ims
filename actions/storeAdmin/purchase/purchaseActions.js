@@ -1,11 +1,12 @@
 
 
 import { Fetch } from "@/utils/Fetch";
+import { API_BASE_URL } from "@/lib/config";
 
 export const getPurchases = async (limit, page) => {
   try {
     const res = await Fetch(
-      `${process.env.NEXT_PUBLIC_BASE_URL}/admin/purchase/all?page=${page}&limit=${limit}`,
+      `${API_BASE_URL}/admin/purchase/all?page=${page}&limit=${limit}`,
       { cache: "no-store" },
     );
     const data = await res.json();
@@ -19,7 +20,7 @@ export const getPurchases = async (limit, page) => {
 export const getPurchase = async (purchaseId) => {
   try {
     const res = await Fetch(
-      `${process.env.NEXT_PUBLIC_BASE_URL}/admin/purchase/${purchaseId}`,
+      `${API_BASE_URL}/admin/purchase/${purchaseId}`,
       { cache: "no-store" },
     );
     const data = await res.json();
@@ -33,7 +34,7 @@ export const getPurchase = async (purchaseId) => {
 export const DeletePurchase = async (purchaseId) => {
   try {
     const res = await Fetch(
-      `${process.env.NEXT_PUBLIC_BASE_URL}/admin/purchase/delete/${purchaseId}`,
+      `${API_BASE_URL}/admin/purchase/delete/${purchaseId}`,
       { cache: "no-store", method: "DELETE" },
     );
     const data = await res.json();

@@ -5,7 +5,7 @@ import Button from "@/components/common/Button/Button";
 import FormInput from "@/components/common/FormInput/FormInput";
 import { useAuth } from "@/contexts/authContext";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { toast } from "react-toastify";
 
 const Login = () => {
@@ -15,8 +15,15 @@ const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState("");
 
-  const { login } = useAuth();
+  const { login, isAuthenticated } = useAuth();
   const router = useRouter();
+
+  // Redirect if already authenticated
+  useEffect(() => {
+    if (isAuthenticated) {
+      router.replace("/admin/dashboard");
+    }
+  }, [isAuthenticated, router]);
 
   // Handle submit form
   const handleSubmit = async (e) => {
@@ -29,7 +36,8 @@ const Login = () => {
 
       if (result.success) {
         toast.success("Login Successful!");
-        router.push("/admin/dashboard");
+        // Use replace instead of push to prevent back navigation issues
+        router.replace("/admin/dashboard");
       } else {
         setError(result.error);
         toast.error(result.error);

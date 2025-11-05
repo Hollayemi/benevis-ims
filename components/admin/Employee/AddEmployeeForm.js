@@ -5,6 +5,7 @@ import Button from "@/components/common/Button/Button";
 import FormInput from "@/components/common/FormInput/FormInput";
 import SelectInput from "@/components/common/SelectInput/SelectInput";
 import { useAuth } from "@/contexts/authContext";
+import { API_BASE_URL } from "@/lib/config";
 import { useState } from "react";
 import { toast } from "react-toastify";
 
@@ -36,7 +37,7 @@ const AddEmployeeForm = () => {
 
     try {
       const res = await fetch(
-        `${process.env.NEXT_PUBLIC_BASE_URL}/admin/employee/create`,
+        `${API_BASE_URL}/admin/employee/create`,
         {
           method: "POST",
           body: JSON.stringify({

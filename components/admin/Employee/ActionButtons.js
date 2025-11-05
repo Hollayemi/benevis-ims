@@ -18,7 +18,7 @@ const ActionButtons = ({ id }) => {
   const handleDelete = async (employeeId) => {
     setLoading(true);
     try {
-      const isSure = confirm("Are you sure you wanna delete this?");
+      const isSure = confirm("Are you sure you want to delete this??");
       if (isSure) {
         const result = await DeleteEmployee(employeeId);
         if (result?.status === 200) {

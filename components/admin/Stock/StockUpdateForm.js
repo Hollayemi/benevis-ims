@@ -11,6 +11,7 @@ import { useAuth } from "@/contexts/authContext";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
+import { API_BASE_URL } from "@/lib/config";
 
 const StockUpdateForm = ({ categories, suppliers, stock }) => {
   const [name, setName] = useState("");
@@ -60,7 +61,7 @@ const StockUpdateForm = ({ categories, suppliers, stock }) => {
 
     try {
       const res = await fetch(
-        `${process.env.NEXT_PUBLIC_BASE_URL}/admin/stock/update/${stock.data?._id}`,
+        `${API_BASE_URL}/admin/stock/update/${stock.data?._id}`,
         {
           method: "PATCH",
           body: JSON.stringify({

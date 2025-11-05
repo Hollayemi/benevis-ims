@@ -6,6 +6,7 @@ import Button from "@/components/common/Button/Button";
 import FormInput from "@/components/common/FormInput/FormInput";
 import TextArea from "@/components/common/FormInput/TextArea";
 import { useAuth } from "@/contexts/authContext";
+import { API_BASE_URL } from "@/lib/config";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
@@ -34,7 +35,7 @@ const CategoryUpdateForm = ({ category }) => {
 
     try {
       const res = await fetch(
-        `${process.env.NEXT_PUBLIC_BASE_URL}/admin/category/update-category/${category?.data?._id}`,
+        `${API_BASE_URL}/admin/category/update-category/${category?.data?._id}`,
         {
           method: "PATCH",
           body: JSON.stringify({

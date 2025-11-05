@@ -16,7 +16,7 @@ const ActionButtons = ({ id }) => {
   const handleDelete = async (purchaseId) => {
     setLoading(true);
     try {
-      const isSure = confirm("Are you sure you wanna delete this?");
+      const isSure = confirm("Are you sure you want to delete this??");
       if (isSure) {
         const result = await DeletePurchase(purchaseId);
         if (result?.data) {

@@ -1,8 +1,8 @@
-// contexts/authContext.js
 "use client";
 
 import { createContext, useContext, useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
+import { API_BASE_URL } from '@/lib/config';
 
 const AuthContext = createContext(null);
 
@@ -11,16 +11,6 @@ export const AuthProvider = ({ children }) => {
     const [loading, setLoading] = useState(true);
     const [isAuthenticated, setIsAuthenticated] = useState(false);
     const router = useRouter();
-
-    // Get backend URL from localStorage or fallback
-    const getBackendUrl = () => {
-        if (typeof window !== 'undefined') {
-            return localStorage.getItem('backendUrl') ||
-                process.env.NEXT_PUBLIC_BASE_URL ||
-                'http://192.168.1.100:5000/api';
-        }
-        return process.env.NEXT_PUBLIC_BASE_URL || 'http://192.168.1.100:5000/api';
-    };
 
     // Initialize auth state from localStorage
     useEffect(() => {
@@ -56,8 +46,8 @@ export const AuthProvider = ({ children }) => {
     // Login function
     const login = async (email, password) => {
         try {
-            const backendUrl = getBackendUrl();
-            const endpoint = `${backendUrl}/api/superadmin/staffs/login`;
+            const backendUrl = API_BASE_URL;
+            const endpoint = `${backendUrl}/superadmin/staffs/login`;
 
             const response = await fetch(endpoint, {
                 method: 'POST',
@@ -160,7 +150,6 @@ export const AuthProvider = ({ children }) => {
         getAccessToken,
         isTokenExpired,
         setBackendUrl,
-        getBackendUrl,
     };
 
     return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

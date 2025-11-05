@@ -61,7 +61,7 @@ export default function RootLayout({ children }) {
       <body className={poppins.className}>
         <LayoutWrapper>
           {children}
-          <NetworkConfig />
+          {process.env.NODE_ENV !== "exe" && <NetworkConfig /> }
 
           {/* Install Prompt Banner */}
           {showInstallPrompt && (

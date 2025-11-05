@@ -4,19 +4,23 @@
 import Header from "@/components/admin/Header/Header";
 import Sidebar from "@/components/admin/Sidebar/Sidebar";
 import { useAuth } from "@/contexts/authContext";
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 import { useEffect } from "react";
 
 export default function AdminLayout({ children }) {
   const { isAuthenticated, loading } = useAuth();
   const router = useRouter();
+  const pathname = usePathname();
 
   useEffect(() => {
+    // Only redirect if loading is complete and user is not authenticated
     if (!loading && !isAuthenticated) {
-      router.push('/');
+      console.log('Not authenticated, redirecting to login');
+      router.replace('/'); // Use replace instead of push
     }
   }, [isAuthenticated, loading, router]);
 
+  // Show loading state
   if (loading) {
     return (
       <div className="flex h-screen items-center justify-center bg-gray-50">
@@ -28,6 +32,7 @@ export default function AdminLayout({ children }) {
     );
   }
 
+  // Don't render anything while redirecting
   if (!isAuthenticated) {
     return null;
   }

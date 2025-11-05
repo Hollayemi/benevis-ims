@@ -5,7 +5,7 @@ const withPWAFunc = withPWA({
     dest: "public",
     register: true,
     skipWaiting: true,
-    disable: false,
+    disable: process.env.NODE_ENV === 'development',
     runtimeCaching: [
         {
             urlPattern: /^https:\/\/fonts\.(?:gstatic)\.com\/.*/i,
@@ -15,28 +15,6 @@ const withPWAFunc = withPWA({
                 expiration: {
                     maxEntries: 4,
                     maxAgeSeconds: 365 * 24 * 60 * 60
-                }
-            }
-        },
-        {
-            urlPattern: /^https:\/\/fonts\.(?:googleapis)\.com\/.*/i,
-            handler: 'StaleWhileRevalidate',
-            options: {
-                cacheName: 'google-fonts-stylesheets',
-                expiration: {
-                    maxEntries: 4,
-                    maxAgeSeconds: 7 * 24 * 60 * 60
-                }
-            }
-        },
-        {
-            urlPattern: /\.(?:eot|otf|ttc|ttf|woff|woff2|font.css)$/i,
-            handler: 'StaleWhileRevalidate',
-            options: {
-                cacheName: 'static-font-assets',
-                expiration: {
-                    maxEntries: 4,
-                    maxAgeSeconds: 7 * 24 * 60 * 60
                 }
             }
         },
@@ -51,75 +29,13 @@ const withPWAFunc = withPWA({
                 }
             }
         },
-        {
-            urlPattern: /\/_next\/image\?url=.+$/i,
-            handler: 'StaleWhileRevalidate',
-            options: {
-                cacheName: 'next-image',
-                expiration: {
-                    maxEntries: 64,
-                    maxAgeSeconds: 24 * 60 * 60
-                }
-            }
-        },
-        {
-            urlPattern: /\.(?:js)$/i,
-            handler: 'StaleWhileRevalidate',
-            options: {
-                cacheName: 'static-js-assets',
-                expiration: {
-                    maxEntries: 32,
-                    maxAgeSeconds: 24 * 60 * 60
-                }
-            }
-        },
-        {
-            urlPattern: /\.(?:css|less)$/i,
-            handler: 'StaleWhileRevalidate',
-            options: {
-                cacheName: 'static-style-assets',
-                expiration: {
-                    maxEntries: 32,
-                    maxAgeSeconds: 24 * 60 * 60
-                }
-            }
-        },
-        {
-            urlPattern: /\/_next\/data\/.+\/.+\.json$/i,
-            handler: 'StaleWhileRevalidate',
-            options: {
-                cacheName: 'next-data',
-                expiration: {
-                    maxEntries: 32,
-                    maxAgeSeconds: 24 * 60 * 60
-                }
-            }
-        },
-        {
-            urlPattern: ({ url }) => {
-                const isSameOrigin = self.origin === url.origin;
-                if (!isSameOrigin) return false;
-                const pathname = url.pathname;
-                if (pathname.startsWith('/api')) return false;
-                return true;
-            },
-            handler: 'NetworkFirst',
-            options: {
-                cacheName: 'others',
-                expiration: {
-                    maxEntries: 32,
-                    maxAgeSeconds: 24 * 60 * 60
-                },
-                networkTimeoutSeconds: 10
-            }
-        }
     ]
 });
 
 const nextConfig = {
     reactStrictMode: true,
 
-    // For standalone build that can be distributed as a desktop app
+    // IMPORTANT: Enable standalone for Electron
     output: 'standalone',
 
     // Disable image optimization for Electron compatibility

@@ -1,10 +1,11 @@
 import { Fetch } from "@/utils/Fetch";
+import { API_BASE_URL } from "@/lib/config";
 
 //get banks with paginations
 export const getSubscriptions = async (limit, page) => {
   try {
     const res = await Fetch(
-      `${process.env.NEXT_PUBLIC_BASE_URL}/admin/subscription/subscription-list?page=${page}&limit=${limit}`,
+      `${API_BASE_URL}/admin/subscription/subscription-list?page=${page}&limit=${limit}`,
       { cache: "no-store" },
     );
     const data = await res.json();

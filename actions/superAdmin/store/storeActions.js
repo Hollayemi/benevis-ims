@@ -2,12 +2,13 @@
 
 
 import { Fetch } from "@/utils/Fetch";
+import { API_BASE_URL } from "@/lib/config";
 
 //get all stores with pagination
 export const getAllStores = async (limit, page) => {
   try {
     const res = await Fetch(
-      `${process.env.NEXT_PUBLIC_BASE_URL}/superadmin/stores/store-list?page=${page}&limit=${limit}`,
+      `${API_BASE_URL}/superadmin/stores/store-list?page=${page}&limit=${limit}`,
       { cache: "no-store" },
     );
     const data = await res.json();
@@ -21,7 +22,7 @@ export const getAllStores = async (limit, page) => {
 export const getStoreDetails = async (storeId) => {
   try {
     const res = await Fetch(
-      `${process.env.NEXT_PUBLIC_BASE_URL}/superadmin/stores/store-details/${storeId}`,
+      `${API_BASE_URL}/superadmin/stores/store-details/${storeId}`,
       { cache: "no-store" },
     );
     const data = await res.json();
@@ -35,7 +36,7 @@ export const getStoreDetails = async (storeId) => {
 export const changeStoreActiveStatus = async (storeId, isActive) => {
   try {
     const res = await Fetch(
-      `${process.env.NEXT_PUBLIC_BASE_URL}/superadmin/stores/update-store-status/${storeId}`,
+      `${API_BASE_URL}/superadmin/stores/update-store-status/${storeId}`,
       {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },

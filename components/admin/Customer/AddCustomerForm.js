@@ -6,6 +6,7 @@ import Button from "@/components/common/Button/Button";
 import FormInput from "@/components/common/FormInput/FormInput";
 import TextArea from "@/components/common/FormInput/TextArea";
 import { useAuth } from "@/contexts/authContext";
+import { API_BASE_URL } from "@/lib/config";
 import { useState } from "react";
 import { toast } from "react-toastify";
 
@@ -29,7 +30,7 @@ const AddCustomerForm = () => {
 
     try {
       const res = await fetch(
-        `${process.env.NEXT_PUBLIC_BASE_URL}/admin/customer/create`,
+        `${API_BASE_URL}/admin/customer/create`,
         {
           method: "POST",
           body: JSON.stringify({

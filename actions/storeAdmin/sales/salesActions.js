@@ -1,13 +1,14 @@
 
 
 import { Fetch } from "@/utils/Fetch";
+import { API_BASE_URL } from "@/lib/config";
 import { toast } from "react-toastify";
 
 //get all sales
 export const getAllSales = async (limit, page, query, filter) => {
   try {
     const res = await Fetch(
-      `${process.env.NEXT_PUBLIC_BASE_URL}/admin/sale/sales?query=${query}&filter=${filter}&page=${page}&limit=${limit}`,
+      `${API_BASE_URL}/admin/sale/sales?query=${query}&filter=${filter}&page=${page}&limit=${limit}`,
       { cache: "no-store" },
     );
     const data = await res.json();
@@ -32,7 +33,7 @@ export const getReport = async (limit, page, customer, startDate, endDate, query
     if (filter) params.append('filter', filter);
 
     const res = await Fetch(
-      `${process.env.NEXT_PUBLIC_BASE_URL}/admin/sale/report?${params.toString()}`,
+      `${API_BASE_URL}/admin/sale/report?${params.toString()}`,
       { cache: "no-store" },
     );
 
@@ -68,7 +69,7 @@ export const getReport = async (limit, page, customer, startDate, endDate, query
 export const getDueSales = async (limit, page) => {
   try {
     const res = await Fetch(
-      `${process.env.NEXT_PUBLIC_BASE_URL}/admin/sale/due-list?page=${page}&limit=${limit}`,
+      `${API_BASE_URL}/admin/sale/due-list?page=${page}&limit=${limit}`,
       { cache: "no-store" },
     );
     const data = await res.json();
@@ -82,7 +83,7 @@ export const getDueSales = async (limit, page) => {
 export const getSalesByTrxId = async (trxId) => {
   try {
     const res = await Fetch(
-      `${process.env.NEXT_PUBLIC_BASE_URL}/admin/sale/sales/search?trxId=${trxId}`,
+      `${API_BASE_URL}/admin/sale/sales/search?trxId=${trxId}`,
       { cache: "no-store" },
     );
     const data = await res.json();
@@ -96,7 +97,7 @@ export const getSalesByTrxId = async (trxId) => {
 export const getDueSalesByNameTrxId = async (query) => {
   try {
     const res = await Fetch(
-      `${process.env.NEXT_PUBLIC_BASE_URL}/admin/sale/due/search?query=${query}`,
+      `${API_BASE_URL}/admin/sale/due/search?query=${query}`,
       { cache: "no-store" },
     );
     const data = await res.json();
@@ -111,7 +112,7 @@ export const getDueSalesByNameTrxId = async (query) => {
 export const getSale = async (saleId) => {
   try {
     const res = await Fetch(
-      `${process.env.NEXT_PUBLIC_BASE_URL}/admin/sale/sales/${saleId}`,
+      `${API_BASE_URL}/admin/sale/sales/${saleId}`,
       { cache: "no-store" },
     );
     const data = await res.json();
@@ -125,7 +126,7 @@ export const getSale = async (saleId) => {
 export const DeleteSale = async (salesId) => {
   try {
     const res = await Fetch(
-      `${process.env.NEXT_PUBLIC_BASE_URL}/admin/sale/sales/${salesId}`,
+      `${API_BASE_URL}/admin/sale/sales/${salesId}`,
       { cache: "no-store", method: "DELETE" },
     );
     const data = await res.json();
@@ -141,7 +142,7 @@ export const updateSale = async (data) => {
 
   try {
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_BASE_URL}/admin/sale/sales-pament`,
+      `${API_BASE_URL}/admin/sale/sales-pament`,
       {
         method: "POST",
         body: JSON.stringify({ data }),

@@ -1,10 +1,11 @@
 import { Fetch } from "@/utils/Fetch";
+import { API_BASE_URL } from "@/lib/config";
 
 //get customers with paginations
 export const getCustomers = async (limit, page) => {
   try {
     const res = await Fetch(
-      `${process.env.NEXT_PUBLIC_BASE_URL}/admin/customer?page=${page}&limit=${limit}`,
+      `${API_BASE_URL}/admin/customer?page=${page}&limit=${limit}`,
       { cache: "no-store" },
     );
     const data = await res.json();
@@ -17,7 +18,7 @@ export const getCustomers = async (limit, page) => {
 export const getCustomerPurchases = async (customerId) => {
   try {
     const res = await Fetch(
-      `${process.env.NEXT_PUBLIC_BASE_URL}/admin/customer/purchases/${customerId}`,
+      `${API_BASE_URL}/admin/customer/purchases/${customerId}`,
       { cache: "no-store" },
     );
     const data = await res.json();
@@ -30,7 +31,7 @@ export const getCustomerPurchases = async (customerId) => {
 export const getAllCustomer = async () => {
   try {
     const res = await Fetch(
-      `${process.env.NEXT_PUBLIC_BASE_URL}/admin/customer/all`,
+      `${API_BASE_URL}/admin/customer/all`,
       { cache: "no-store" },
     );
     const data = await res.json();
@@ -44,7 +45,7 @@ export const getAllCustomer = async () => {
 export const getACustomer = async (customerId) => {
   try {
     const res = await Fetch(
-      `${process.env.NEXT_PUBLIC_BASE_URL}/admin/customer/${customerId}`,
+      `${API_BASE_URL}/admin/customer/${customerId}`,
       { cache: "no-store" },
     );
     const data = await res.json();

@@ -27,7 +27,7 @@ export const getReport = async (startDate, endDate, productId) => {
     if (productId) params.append('productId', productId);
 
     const res = await Fetch(
-      `${process.env.NEXT_PUBLIC_BASE_URL}/admin/stock/report/all?${params.toString()}`,
+      `${API_BASE_URL}/admin/stock/report/all?${params.toString()}`,
       { cache: "no-store" },
     );
 
@@ -48,7 +48,7 @@ export const getReport = async (startDate, endDate, productId) => {
 export const getStock = async (stockId) => {
   try {
     const res = await Fetch(
-      `${process.env.NEXT_PUBLIC_BASE_URL}/admin/stock/${stockId}`,
+      `${API_BASE_URL}/admin/stock/${stockId}`,
       { cache: "no-store" },
     );
     const data = await res.json();
@@ -62,7 +62,7 @@ export const getStock = async (stockId) => {
 export const searchStock = async (query) => {
   try {
     const res = await Fetch(
-      `${process.env.NEXT_PUBLIC_BASE_URL}/admin/stock/search?name=${query}`,
+      `${API_BASE_URL}/admin/stock/search?name=${query}`,
       { cache: "no-store" },
     );
     const data = await res.json();
@@ -76,7 +76,7 @@ export const searchStock = async (query) => {
 export const DeleteStock = async (stockId) => {
   try {
     const res = await Fetch(
-      `${process.env.NEXT_PUBLIC_BASE_URL}/admin/stock/delete/${stockId}`,
+      `${API_BASE_URL}/admin/stock/delete/${stockId}`,
       { cache: "no-store", method: "DELETE" },
     );
     const data = await res.json();

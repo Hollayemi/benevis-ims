@@ -1,20 +1,20 @@
-
-
 "use client";
 
-import { signOut } from "next-auth/react";
+import { useAuth } from "@/contexts/authContext";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 
 const LogoutButton = ({ link }) => {
   const router = useRouter();
-  //user signout handler
+  const { logout } = useAuth()
+
   const signOutHandler = async () => {
-    await signOut({ redirect: false, callbackUrl: "/superadmin/login" });
+    await logout({ redirect: false, callbackUrl: "/superadmin/login" });
     router.push("/");
     toast.success("Logout successful!");
   };
+
 
   return (
     <div className="shadow-primary-300 h-[90px] w-full rounded-md bg-white/90 p-5 shadow-md backdrop-blur">

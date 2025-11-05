@@ -656,10 +656,10 @@ const AluminumRoofingLanding = () => {
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="flex flex-col md:flex-row justify-between items-center">
                         <div className="text-2xl font-bold bg-gradient-to-r from-blue-400 to-cyan-300 bg-clip-text text-transparent mb-4 md:mb-0">
-                            AluminiShield
+                            Benevis Aluminium
                         </div>
                         <div className="text-gray-400 text-center md:text-right">
-                            <p>&copy; 2024 AluminiShield. All rights reserved.</p>
+                            <p>&copy; 2024 Benevis Aluminium. All rights reserved.</p>
                             <p className="text-sm mt-1">Premium aluminum roofing solutions for modern buildings.</p>
                         </div>
                     </div>

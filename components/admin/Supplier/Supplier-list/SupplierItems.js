@@ -9,6 +9,7 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { toast } from "react-toastify";
 import DetailsModal from "./DetailsModal";
+import { API_BASE_URL } from "@/lib/config";
 
 const SupplierItems = ({ suppliers }) => {
   const [detailsModal, setDetailsModal] = useState(false);
@@ -26,10 +27,10 @@ const SupplierItems = ({ suppliers }) => {
 
   //delete supplier
   const handleDelete = async (id) => {
-    const agree = confirm("Are you sure you wanna delete this?");
+    const agree = confirm("Are you sure you want to delete this??");
     if (agree) {
       const res = await fetch(
-        `${process.env.NEXT_PUBLIC_BASE_URL}/admin/supplier/delete-supplier/${id}`,
+        `${API_BASE_URL}/admin/supplier/delete-supplier/${id}`,
         {
           headers: {
             Authorization: `Bearer ${user?.accessToken}`,
@@ -126,7 +127,7 @@ const SupplierItems = ({ suppliers }) => {
                           </svg>
                         </span>
                       </button>
-                      <Link href={`/admin/supplier-update/${supplier?._id}`}>
+                      {/* <Link className="!hidden" href={`/admin/supplier-update/${supplier?._id}`}>
                         <span>
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
@@ -143,7 +144,7 @@ const SupplierItems = ({ suppliers }) => {
                             />
                           </svg>
                         </span>
-                      </Link>
+                      </Link> */}
                       <button onClick={() => handleDelete(supplier?._id)}>
                         <span>
                           <svg

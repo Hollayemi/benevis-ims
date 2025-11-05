@@ -3,6 +3,7 @@
 "use client";
 
 import { useAuth } from "@/contexts/authContext";
+import { API_BASE_URL } from "@/lib/config";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -17,12 +18,12 @@ const ActionButtons = ({ id }) => {
   //delete a category
   const handleDelete = async (ID) => {
     setLoading(true);
-    const agree = confirm("Are you sure you wanna delete this?");
+    const agree = confirm("Are you sure you want to delete this??");
     try {
       if (agree) {
         //call the api to delete this category
         const res = await fetch(
-          `${process.env.NEXT_PUBLIC_BASE_URL}/admin/category/delete-category/${ID}`,
+          `${API_BASE_URL}/admin/category/delete-category/${ID}`,
           {
             method: "DELETE",
             headers: {
@@ -48,7 +49,7 @@ const ActionButtons = ({ id }) => {
   return (
     <>
       <span className="flex w-full items-center justify-center gap-2">
-        <button className="">
+        <button className="hidden">
           <Link href={`/admin/category-update/${id}`}>
             <span>
               <svg

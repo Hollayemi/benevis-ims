@@ -1,6 +1,8 @@
 // utils/apiClient.js
 "use client";
 
+import { API_BASE_URL } from "@/lib/config";
+
 class APIClient {
   constructor() {
     this.baseURL = this.getBaseURL();
@@ -20,7 +22,7 @@ class APIClient {
       const storedUrl = localStorage.getItem('backendUrl');
       if (storedUrl) return storedUrl;
     }
-    return process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:5000/api';
+    return API_BASE_URL || 'http://localhost:5000/api';
   }
 
   setBaseURL(url) {

@@ -1,10 +1,11 @@
 import { Fetch } from "@/utils/Fetch";
+import { API_BASE_URL } from "@/lib/config";
 
 //get finance for store
 export const getFinance = async () => {
   try {
     const res = await Fetch(
-      `${process.env.NEXT_PUBLIC_BASE_URL}/admin/financial`,
+      `${API_BASE_URL}/admin/financial`,
       { cache: "no-cache" },
     );
     console.log({ res })
@@ -21,7 +22,7 @@ export const getFinance = async () => {
 export const getPurchaseAndSales = async () => {
   try {
     const res = await Fetch(
-      `${process.env.NEXT_PUBLIC_BASE_URL}/admin/dashboard/purchase-sale`,
+      `${API_BASE_URL}/admin/dashboard/purchase-sale`,
       { cache: "no-cache" },
     );
     const data = await res.json();
@@ -35,7 +36,7 @@ export const getPurchaseAndSales = async () => {
 export const lastYearBuyAndSales = async () => {
   try {
     const res = await Fetch(
-      `${process.env.NEXT_PUBLIC_BASE_URL}/admin/dashboard/buy-sale`,
+      `${API_BASE_URL}/admin/dashboard/buy-sale`,
       { cache: "no-cache" },
     );
     const data = await res.json();

@@ -15,6 +15,7 @@ const Dashboard = () => {
     categories: null,
     stocks: null,
   });
+
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {

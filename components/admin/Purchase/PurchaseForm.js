@@ -8,6 +8,7 @@ import RadioButton from "@/components/common/FormInput/RadioButton";
 import TextArea from "@/components/common/FormInput/TextArea";
 import SelectInput from "@/components/common/SelectInput/SelectInput";
 import { useAuth } from "@/contexts/authContext";
+import { API_BASE_URL } from "@/lib/config";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { toast } from "react-toastify";
@@ -49,7 +50,7 @@ const PurchaseForm = ({ categories, suppliers }) => {
 
     try {
       const res = await fetch(
-        `${process.env.NEXT_PUBLIC_BASE_URL}/admin/purchase/create`,
+        `${API_BASE_URL}/admin/purchase/create`,
         {
           method: "POST",
           body: JSON.stringify({

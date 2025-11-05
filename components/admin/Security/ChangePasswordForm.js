@@ -5,6 +5,7 @@
 import Button from "@/components/common/Button/Button";
 import FormInput from "@/components/common/FormInput/FormInput";
 import { useAuth } from "@/contexts/authContext";
+import { API_BASE_URL } from "@/lib/config";
 import { useState } from "react";
 import { toast } from "react-toastify";
 
@@ -27,7 +28,7 @@ const ChangePasswordForm = () => {
     setErrors({});
     try {
       const res = await fetch(
-        `${process.env.NEXT_PUBLIC_BASE_URL}/admin/security/change-password`,
+        `${API_BASE_URL}/admin/security/change-password`,
         {
           method: "POST",
           headers: {

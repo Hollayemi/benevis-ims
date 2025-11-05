@@ -1,5 +1,5 @@
 "use client"
-import defaultLogo from "@/public/defaultLogo.png";
+import defaultLogo from "@/public/icon.png";
 import Image from "next/image";
 import Link from "next/link";
 import MessageSection from "./MessageSection";
@@ -24,10 +24,10 @@ const Header = () => {
               alt="store logo"
               width={100}
               height={100}
-              className="h-[35px] w-[35px] rounded-full object-cover ring-1 ring-secondary"
+              className="h-[35px] w-[35px]  object-cover ring-1 ring-secondary"
             />
             <h1 className="hidden text-nowrap text-lg font-semibold uppercase sm:block">
-              BIS Aluminum Longspan
+              Benevis Aluminum Longspan
             </h1>
           </div>
         </Link>

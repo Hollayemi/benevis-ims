@@ -11,11 +11,7 @@ import { useAuth } from "@/contexts/authContext";
 const Sidebar = () => {
   const { menuOpen, mobileMenuHandler } = useMobileMenu();
   const [activeDropdownIndex, setActiveDropdownIndex] = useState(null);
-
-
   const router = useRouter();
-  //user signout handler
-
 
   const { user, logout } = useAuth();
   if (new Date(user?.expiresIn) < new Date()) {
@@ -27,8 +23,6 @@ const Sidebar = () => {
     router.push("/");
     toast.success("Logout successful!");
   };
-
-  console.log({ user })
 
   return (
     <div>
@@ -52,6 +46,7 @@ const Sidebar = () => {
                 setActiveDropdownIndex={setActiveDropdownIndex}
               />
             ))}
+
 
             {/* logout button */}
             <li onClick={signOutHandler}>

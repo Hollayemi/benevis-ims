@@ -57,11 +57,11 @@ return (
     <PageHeader headText="Report" rightSide={`${formatDate(startDate,)} - ${formatDate(endDate)}`} />
     <ReportFilter dropdown={summary?.customers} dropdownName={"customer"} status acceptQuery />
     <div className="flex justify-evenly flex-wrap gap-4">
+      <CardSample title="Total Orders" stat={summary?.totalOrders} />
       <CardSample title="Total Items" stat={summary?.totalItems} />
       <CardSample title="Total Sales" stat={summary?.totalSale} currency />
-      <CardSample title="Total Orders" stat={summary?.totalOrders} />
-      <CardSample title="Bank" stat={summary?.bank} currency />
-      <CardSample title="POS" stat={summary?.cash} currency />
+      <CardSample title="Due Payment" stat={summary?.due} currency />
+      <CardSample title="Bank" stat={summary?.received} currency />
       {/* <CardSample title="Customers" stat={summary.customers?.length} /> */}
     </div>
     {/* all purchase item table */}
